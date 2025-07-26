@@ -435,3 +435,29 @@ body.dark-mode .playlist h2:nth-of-type(2) {
     color: #f0f0f0;
     font-weight: lighter;
 }
+
+/* SEARCH INPUT STYLING */
+
+#searchInput {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1.5px solid #b3b3b3;
+    border-radius: 6px;
+    background-color: #fff8ef;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #2b2b2b;
+    margin-right: 0.5rem;
+}
+
+#searchInput:focus {
+    border-color: #5468ff;
+    box-shadow: 0 0 6px #5adaff40;
+    background-color: #fff;
+}
+
+.removeBtn {
+  all: unset;
+  cursor: pointer; /* Optional: to keep pointer cursor on hover */
+  display: inline-block; /* Optional: restores button-like display */
+}

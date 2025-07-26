@@ -91,10 +91,11 @@ let globalIndex = 0;
 
 //PLAYLIST VARIABLES
 
-// let playlistSongsArr = [];
+// Playlist Data Structure
 let playlists = {};
 let currentPlaylist = "";
 let currentSongIndex = 0;
+// Playlist Data Structure ends
 
 // creating and displaying playlist
 const playListName = document.querySelector(".new_playlist_input");
@@ -102,10 +103,13 @@ const appendNameDiv = document.querySelector(".all_playlists");
 const appendBtn = document.querySelector(".new_playlist_btn");
 
 appendBtn.addEventListener("click", function () {
-    const playlistName = playListName.value.trim();
-    if (!playlistName) return;
+    const playlistName = playListName.value.trim(); // removing any whitespaces from the name
+
+    if (!playlistName) return; // if playlist name is nothing then return
+
     if (!playlists[playlistName]) {
         playlists[playlistName] = [];
+
         const playlistButton = document.createElement("button");
         playlistButton.classList.add("appendPlaylist");
         playlistButton.textContent = playlistName;
@@ -126,6 +130,12 @@ appendBtn.addEventListener("click", function () {
     }
     playListName.value = "";
 });
+
+function highlightSelectedPlaylist(selectedBtn) {
+    document.querySelectorAll('.appendPlaylist').forEach(btn =>
+        btn.classList.remove('selected'));
+    selectedBtn.classList.add('selected');
+}
 
 // const allSongsBtn = document.querySelectorAll(".song_listed");
 
@@ -213,7 +223,7 @@ allSongsBtn.forEach((btn, index) => {
     });
 
     //PLAYLIST NEW ADD-ONS
-    btn.textContent = allSongs[index].name;
+    // btn.textContent = allSongs[index].name;
     btn.addEventListener("click", function () {
         currentSongIndex = index;
         playSong(index);
@@ -221,6 +231,7 @@ allSongsBtn.forEach((btn, index) => {
 });
 // });
 
+//  Adding Songs to the Selected Playlist
 const addToPlaylistBtn = document.querySelector(".addToPlaylistBtn");
 
 addToPlaylistBtn.addEventListener("click", function () {
@@ -236,6 +247,8 @@ addToPlaylistBtn.addEventListener("click", function () {
     }
 });
 
+
+// Showing Songs of the Current Playlist
 function showPlaylistSongs(playlistName) {
     const container = document.querySelector(".current_playlist_songs");
     container.innerHTML = ""; // Clear previous
@@ -251,6 +264,7 @@ function showPlaylistSongs(playlistName) {
         container.appendChild(songBtn);
     });
 }
+
 
 
 

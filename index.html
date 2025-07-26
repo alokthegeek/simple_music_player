@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="overall">
+
+        <div class="heading-div">
+            <h1>Harmoniq</h1>
+
+            <!-- Rounded switch -->
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle" />
+                <span class="slider round"></span>
+            </label>
+
+        </div>
+
+        <div class="container">
+            <div class="all-songs">
+                <div class="filter_by_genre">
+
+                    <label for="genres">Choose a genre:</label>
+                    <select id="genres" name="genres">
+                        <option class="all">All</option>
+                        <option class="rock">Rock</option>
+                        <option class="rap">Rap</option>
+                        <option class="pop">Pop</option>
+                        <option class="dancehall">Dancehall</option>
+                    </select>
+
+                </div>
+                <h2>Liked Songs</h2>
+                <!-- songs list -->
+                <div class="list_all_songs">
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                    <button class="song_listed"></button>
+                </div>
+            </div>
+            <div class="card" style="display: none">
+                <!-- song image -->
+                <div class="img-card">
+                    <img src="" alt="Album cover" class="card-img">
+                </div>
+                <!-- audio player  -->
+                <div class="audio-player">
+                    <audio id="audioPlayer" controls controlsList="nodownload">
+                        <source type="audio/mp3" />
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="playback-buttons">
+                    <button class="previous play_buttons">PREVIOUS</button>
+                    <button class="next play_buttons">NEXT</button>
+                </div>
+
+                <div class="addToPlaylist">
+                    <button class="play_buttons addToPlaylistBtn"
+                        style="    background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);">ADD TO
+                        PLAYLIST</button>
+                </div>
+
+            </div>
+            <div class="playlist">
+                <input type="text" placeholder="Enter playlist name" class="new_playlist_input">
+                <button class="new_playlist_btn">Create Playlist</button>
+                <h1>Current playlist</h1>
+                <div class="current_playlist_songs">
+
+                </div>
+                <h2>All your Playlists</h2>
+
+                <div class="all_playlists">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="index.js"></script>
+
+</body>
+
+</html>

@@ -253,7 +253,7 @@ function showPlaylistSongs(playlistName) {
     const container = document.querySelector(".current_playlist_songs");
     container.innerHTML = ""; // Clear previous
 
-    (playlists[playlistName] || []).forEach(songIdx => {
+    (playlists[playlistName] || []).forEach((songIdx, i) => {
         const songBtn = document.createElement("button");
         songBtn.className = "song_listed";
         songBtn.textContent = allSongs[songIdx].name;
@@ -261,7 +261,24 @@ function showPlaylistSongs(playlistName) {
             currentSongIndex = songIdx;
             playSong(songIdx);
         });
-        container.appendChild(songBtn);
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "❌";
+        removeBtn.classList.add("removeBtn");
+        removeBtn.style.marginLeft = "8px";
+        removeBtn.onclick = function () {
+            playlists[playlistName].splice(i, 1); // Remove the song correctly using index i
+            showPlaylistSongs(playlistName);      // Re-render the playlist songs
+        };
+
+        // Wrap songBtn and removeBtn in a container div for better layout (optional)
+        const songRow = document.createElement("div");
+        songRow.style.display = "flex";
+        songRow.style.alignItems = "center";
+
+        songRow.appendChild(songBtn);
+        songRow.appendChild(removeBtn);
+        container.appendChild(songRow);
     });
 }
 
@@ -270,6 +287,7 @@ function showPlaylistSongs(playlistName) {
 
 
 // adding space button functionality
+/*
 document.addEventListener("keydown", function (event) {
     if (event.key == " ") {
 
@@ -280,7 +298,23 @@ document.addEventListener("keydown", function (event) {
             audioPlayer.pause();
         }
     }
+});*/
+
+document.addEventListener("keydown", function (event) {
+    // Check if space is pressed and NOT inside an input or textarea
+    const tag = event.target.tagName.toLowerCase();
+    const isInput = tag === 'input' || tag === 'textarea' || event.target.isContentEditable;
+
+    if (event.key === " " && !isInput) {
+        event.preventDefault();
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+        } else {
+            audioPlayer.pause();
+        }
+    }
 });
+
 
 
 const selectOpt = document.querySelector("#genres");
@@ -368,4 +402,22 @@ toggle.addEventListener('change', () => {
     } else {
         document.body.classList.remove('dark-mode');
     }
+});
+
+// SEARCH INPUT LOGIC
+const search = document.querySelector("#searchInput");
+
+search.addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+
+    allSongsBtn.forEach((btn, index) => {
+        const songName = allSongs[index].name.toLowerCase();
+        const artistName = allSongs[index].artist.toLowerCase();
+
+        if (songName.includes(query) || artistName.includes(query)) {
+            btn.style.display = "";
+        } else {
+            btn.style.display = "none";
+        }
+    });
 });

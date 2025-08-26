@@ -180,7 +180,7 @@ input:checked+.slider:before {
 /* audio player interface styling */
 
 
-.audio-player {
+/* .audio-player {
     width: 80%;
     margin: 1rem auto;
     background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
@@ -190,16 +190,36 @@ input:checked+.slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+.audio-player{
+  display: block;                /* override previous flex */
+  width: 100%;
+  max-width: 460px;              /* matches your card look */
+  margin: 12px auto 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;              /* avoid any inner overflow */
 }
 
 /* Style audio element internal controls */
-.audio-player audio {
+/* .audio-player audio {
     width: 100%;
     outline: none;
     background: transparent;
     border-radius: 8px;
     min-height: 40px;
     filter: drop-shadow(0 1px 6px rgba(0, 0, 0, .18));
+} */
+.audio-player audio{
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: 44px;                  /* stable bar height */
+  min-height: 44px;              /* prevents iOS collapse */
+  outline: none;
+  background: transparent;
+  border-radius: 8px;
 }
 
 /* Hide default outline on focus */
@@ -653,7 +673,20 @@ body.dark-mode .playlist h2:nth-of-type(2) {
   }
 }
 
-/* iPhone 13/mini widths */
+
+/* 3) Stretch Safari’s internal enclosure */
+@supports (-webkit-touch-callout: none) {
+  .audio-player audio::-webkit-media-controls-enclosure{
+    width: 100%;
+    border-radius: 10px;
+    background: transparent;
+  }
+  .audio-player audio::-webkit-media-controls-panel{
+    background: transparent;
+  }
+}
+
+/* 4) Small iPhone widths (13/mini) */
 @media (max-width: 428px){
   .audio-player{ max-width: calc(100% - 40px); padding: 8px; }
   .audio-player audio{ height: 40px; min-height: 40px; }

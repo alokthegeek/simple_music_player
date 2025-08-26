@@ -476,7 +476,7 @@ body.dark-mode .playlist h2:nth-of-type(2) {
 /* ========== ALBUM ART ========== */
 .player-container img {
   width: 100%;
-  max-width: 450px;    /* Big on desktop */
+  max-width: 100%;  /* Fix for mobile scaling */
   border-radius: 12px;
   display: block;
   margin: 0 auto;
@@ -490,11 +490,13 @@ body.dark-mode .playlist h2:nth-of-type(2) {
   align-items: center;
   width: 100%;
   margin-top: 1rem;
+  padding: 0 10px; /* Add breathing space */
+  box-sizing: border-box;
 }
 
 .progress-bar {
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   height: 10px;
   background: #ddd;
   border-radius: 8px;
@@ -504,7 +506,7 @@ body.dark-mode .playlist h2:nth-of-type(2) {
 
 .buttons {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
   justify-content: center;
   gap: 12px;
   margin-top: 0.8rem;
@@ -519,51 +521,49 @@ body.dark-mode .playlist h2:nth-of-type(2) {
   color: white;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  flex: 1 1 auto; /* Makes buttons resize dynamically */
+  max-width: 150px;
+  text-align: center;
 }
 
 .buttons button:hover {
   transform: scale(1.05);
 }
 
-/* ========== MOBILE RESPONSIVENESS ========== */
+/* ========== RESPONSIVENESS FIXES ========== */
 @media screen and (max-width: 768px) {
   .player-container {
-    padding: 0.8rem;
+    padding: 0.5rem;
   }
 
   .player-container img {
-    max-width: 320px; /* Reduce album art size */
-  }
-
-  .buttons {
-    flex-wrap: wrap;
-    gap: 10px;
+    max-width: 90%; /* Reduce album art size */
   }
 
   .buttons button {
-    padding: 0.45rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
+    max-width: 120px;
   }
 
   .progress-bar {
-    max-width: 300px;
     height: 8px;
   }
 }
 
-/* ========== SMALL MOBILE PHONES ========== */
 @media screen and (max-width: 480px) {
   .player-container img {
-    max-width: 260px; /* Even smaller for tiny screens */
+    max-width: 95%;
   }
 
   .buttons button {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
+    max-width: 100px;
   }
 
   .progress-bar {
-    max-width: 240px;
+    height: 6px;
   }
 }
 

@@ -57,9 +57,8 @@
                 </div>
                 <!-- audio player  -->
                 <div class="audio-player">
-                    <audio id="audioPlayer" controls controlsList="nodownload">
-                        <source type="audio/mp3" />
-                        Your browser does not support the audio element.
+                    <audio id="audioPlayer" controls preload="metadata" playsinline controlsList="nodownload">
+                    <source type="audio/mp3" />
                     </audio>
                 </div>
                 <div class="playback-buttons">
